@@ -79,8 +79,8 @@ class CombatLogParser extends MainCombatLogParser {
     earthenShieldTotem: EarthenShieldTotem,
     highTide: HighTide,
     cooldownTracker: CooldownTracker,
-    
-    
+
+
 
     // Legendaries:
     drapeOfShame: DrapeOfShame,
@@ -166,9 +166,9 @@ class CombatLogParser extends MainCombatLogParser {
     const giftOfTheQueenTargetEfficiency = giftOfTheQueenAvgHits / 6;
 
     const giftOfTheQueenRawHealing = giftOfTheQueen.healingEffective + giftOfTheQueen.healingOverheal;
-    var giftOfTheQueenCBTFeeding = 0;
+    let giftOfTheQueenCBTFeeding = 0;
     if (this.modules.cooldownTracker.cbtFeed[SPELLS.GIFT_OF_THE_QUEEN.id]) {
-      var giftOfTheQueenCBTFeeding = this.modules.cooldownTracker.cbtFeed[SPELLS.GIFT_OF_THE_QUEEN.id].healing;
+      giftOfTheQueenCBTFeeding = this.modules.cooldownTracker.cbtFeed[SPELLS.GIFT_OF_THE_QUEEN.id].healing;
     }
     const hasCBT = this.selectedCombatant.hasTalent(SPELLS.CLOUDBURST_TOTEM_CAST.id)
     const giftOfTheQueenCBTFeedingPercent = giftOfTheQueenCBTFeeding / giftOfTheQueenRawHealing;
@@ -184,7 +184,7 @@ class CombatLogParser extends MainCombatLogParser {
 
     const has2PT19 = this.selectedCombatant.hasBuff(SPELLS.RESTORATION_SHAMAN_T19_2SET_BONUS_BUFF.id);
     const t19_2PHealingPercentage = this.modules.t19_2Set.healing / totalHealing;
-    
+
 
 
     this.modules.cooldownTracker.processAll();
@@ -365,7 +365,7 @@ class CombatLogParser extends MainCombatLogParser {
       />,
       <StatisticBox
         icon={<Icon icon="petbattle_health-down" alt="Non healing time" />}
-        
+
         value={`${formatPercentage(nonHealingTimePercentage)} %`}
         label={(
           <dfn data-tip={`Non healing time is available casting time not used for a spell that helps you heal. This can be caused by latency, cast interrupting, not casting anything (e.g. due to movement/stunned), DPSing, etc. <br /><br />You spent ${formatPercentage(deadTimePercentage)}% of your time casting nothing at all.`}>
@@ -452,7 +452,7 @@ class CombatLogParser extends MainCombatLogParser {
         title: <ItemLink id={ITEMS.INTACT_NAZJATAR_MOLTING.id} />,
         result: (
           <span>
-          {nazjatarRiptideResets} Riptide resets 
+          {nazjatarRiptideResets} Riptide resets
           </span>
         ),
       },
@@ -475,9 +475,9 @@ class CombatLogParser extends MainCombatLogParser {
             {((t19_2PHealingPercentage * 100) || 0).toFixed(2)} % / {formatNumber(this.modules.t19_2Set.healing / fightDuration * 1000)} HPS
           </dfn>
         ),
-            
+
       },
-      
+
     ];
 
     results.tabs = [

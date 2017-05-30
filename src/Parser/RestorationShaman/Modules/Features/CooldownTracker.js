@@ -12,12 +12,12 @@ import CoreCooldownTracker from 'Parser/Core/Modules/CooldownTracker';
 // 2) Track the spells feeding into AG/Asc/CBT so we can provide a breakdownn of the feeding
 // for the Feeding tab.
 //
-// For each active AG/CBT/Asc we track for each spell how much raw- and effective healing it 
-// contributed. Whenever new results are generated in CombatLogParser.js processAll will 
-// be called. This function looks through all cooldowns that have not been processed yet 
+// For each active AG/CBT/Asc we track for each spell how much raw- and effective healing it
+// contributed. Whenever new results are generated in CombatLogParser.js processAll will
+// be called. This function looks through all cooldowns that have not been processed yet
 // and adds their healing to the total spell breakdown per cooldown, which is stored in
 // cbtFeed, agFeed and ascFeed. It is necessary to do it this way because only after
-// cloudburst has done all its healing you know how much overhealing it has done, and 
+// cloudburst has done all its healing you know how much overhealing it has done, and
 // thus how much effective healing each of the feeding spells did.
 //
 // getIndirectHealing can be used to query for one spellId how much healing it provided
@@ -32,10 +32,10 @@ class CooldownTracker extends CoreCooldownTracker {
 
 
   cbtFeed = [];
-  cbtTotals = {total: 0, totalEffective: 0} 
+  cbtTotals = {total: 0, totalEffective: 0}
 
   agFeed = [];
-  agTotals = {total: 0, totalEffective: 0} 
+  agTotals = {total: 0, totalEffective: 0}
 
   ascFeed = [];
   ascTotals = {total: 0, totalEffective: 0}
@@ -94,7 +94,7 @@ class CooldownTracker extends CoreCooldownTracker {
 
 
   getIndirectHealing(spellId) {
-    
+
     var healing = 0;
     if (this.cbtFeed[spellId]) {
       healing += this.cbtFeed[spellId].effectiveHealing || 0;
@@ -111,7 +111,7 @@ class CooldownTracker extends CoreCooldownTracker {
      return healing;
   }
 
-  
+
   addNewCooldown(spell, timestamp) {
       const cooldown = {
       ability: spell,
@@ -195,7 +195,7 @@ class CooldownTracker extends CoreCooldownTracker {
   on_byPlayer_cast(event) {
 
     const spellId = event.ability.guid;
-    
+
     if (spellId === SPELLS.CLOUDBURST_TOTEM_CAST.id) {
         const cbtCooldown = this.addNewCooldown(SPELLS.CLOUDBURST_TOTEM_CAST, event.timestamp)
         this.lastCBT = cbtCooldown;
@@ -208,7 +208,7 @@ class CooldownTracker extends CoreCooldownTracker {
 
 
   on_byPlayer_heal(event) {
-    
+
       if (event.ability.guid === SPELLS.CLOUDBURST_TOTEM_HEAL.id) {
           this.popCBT(event);
           this.lastCBT.healing += (event.amount || 0) + (event.absorb || 0);
@@ -245,8 +245,8 @@ class CooldownTracker extends CoreCooldownTracker {
 
   on_byPlayer_damage(event){
     const index = this.activeCooldowns.findIndex(cooldown => cooldown.ability.id === SPELLS.ANCESTRAL_GUIDANCE_CAST.id);
-    const spellId = event.ability.guid;
-    
+    // const spellId = event.ability.guid;
+
     if (index === -1) {
         return;
     }
@@ -275,7 +275,7 @@ class CooldownTracker extends CoreCooldownTracker {
       cooldown.events.push(event);
     });
   }
-  
+
 }
 
 export default CooldownTracker;
