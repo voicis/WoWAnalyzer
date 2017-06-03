@@ -2,7 +2,6 @@ import SPELLS from 'common/SPELLS';
 
 import CoreAlwaysBeCastingHealing from 'Parser/Core/Modules/AlwaysBeCastingHealing';
 
-
 const HEALING_ABILITIES_ON_GCD = [
   SPELLS.HEALING_WAVE.id,
   SPELLS.CHAIN_HEAL.id,

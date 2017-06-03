@@ -1,4 +1,7 @@
 *
 !build/*
 !server/*
+<<<<<<< HEAD
 !package.json
+=======
+>>>>>>> e841b1a5c54d52ae1ca0233f95960b93354bca2b

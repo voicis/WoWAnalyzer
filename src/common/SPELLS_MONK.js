@@ -95,7 +95,7 @@ export default {
   },
   // Ch-Ji Heal
   CRANE_HEAL: {
-    id: 213373,
+    id: 198756,
     name: 'Crane Heal',
     icon: 'inv_pet_cranegod',
   },
@@ -114,7 +114,7 @@ export default {
   },
   // Mastery
   GUSTS_OF_MISTS: {
-    id: 117907,
+    id: 191894,
     name: 'Mastery: Gust of Mists',
     icon: 'ability_monk_souldance',
   },
